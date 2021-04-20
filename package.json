@@ -1,0 +1,36 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "description": "Machinify test app",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vlognow/test"
+  },
+  "engines": {
+    "node": ">=10.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "flow-bin": "^0.81.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-hot-loader": "^4.3.11",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production"
+  }
+}
