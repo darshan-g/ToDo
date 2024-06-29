@@ -1,55 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMEI Formatter</title>
-</head>
-<body>
-    <label for="imei">Enter IMEI:</label>
-    <input type="text" id="imei" maxlength="17" />
-    <script src="script.js"></script>
-</body>
-</html>
+import React, { useState } from 'react';
 
+const IMEIInput = () => {
+  const [imei, setImei] = useState('');
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const imeiInput = document.getElementById('imei');
+  const formatIMEI = (input) => {
+    const cleanInput = input.replace(/\s/g, '');
+    let formattedIMEI = '';
 
-    imeiInput.addEventListener('input', formatIMEI);
-    imeiInput.addEventListener('paste', handlePaste);
-
-    function formatIMEI(event) {
-        let input = imeiInput.value.replace(/\s/g, '');
-        let formattedIMEI = '';
-
-        for (let i = 0; i < input.length; i++) {
-            if (i === 2 || i === 8 || i === 14) {
-                formattedIMEI += ' ';
-            }
-            formattedIMEI += input[i];
-        }
-
-        imeiInput.value = formattedIMEI.trim();
+    for (let i = 0; i < cleanInput.length; i++) {
+      if (i === 2 || i === 8 || i === 14) {
+        formattedIMEI += ' ';
+      }
+      formattedIMEI += cleanInput[i];
     }
 
-    function handlePaste(event) {
-        event.preventDefault();
+    return formattedIMEI.trim();
+  };
 
-        const paste = (event.clipboardData || window.clipboardData).getData('text');
-        const sanitizedPaste = paste.replace(/\s/g, '');
-        let formattedIMEI = '';
+  const handleInputChange = (event) => {
+    const input = event.target.value;
+    const formattedInput = formatIMEI(input);
+    setImei(formattedInput);
+  };
 
-        for (let i = 0; i < sanitizedPaste.length; i++) {
-            if (i === 2 || i === 8 || i === 14) {
-                formattedIMEI += ' ';
-            }
-            formattedIMEI += sanitizedPaste[i];
-        }
+  const handlePaste = (event) => {
+    event.preventDefault();
+    const paste = (event.clipboardData || window.clipboardData).getData('text');
+    const formattedPaste = formatIMEI(paste);
+    setImei(formattedPaste);
+  };
 
-        imeiInput.value = formattedIMEI.trim();
-    }
-});
---
-Regards,
-Darshan
+  return (
+    <div>
+      <label htmlFor="imei">Enter IMEI:</label>
+      <input
+        type="text"
+        id="imei"
+        value={imei}
+        onChange={handleInputChange}
+        onPaste={handlePaste}
+        maxLength="17"
+      />
+    </div>
+  );
+};
+
+export default IMEIInput;
