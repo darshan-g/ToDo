@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMEI Formatter</title>
+</head>
+<body>
+    <label for="imei">Enter IMEI:</label>
+    <input type="text" id="imei" maxlength="17" />
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const imeiInput = document.getElementById('imei');
+
+    imeiInput.addEventListener('input', formatIMEI);
+    imeiInput.addEventListener('paste', handlePaste);
+
+    function formatIMEI(event) {
+        let input = imeiInput.value.replace(/\s/g, '');
+        let formattedIMEI = '';
+
+        for (let i = 0; i < input.length; i++) {
+            if (i === 2 || i === 8 || i === 14) {
+                formattedIMEI += ' ';
+            }
+            formattedIMEI += input[i];
+        }
+
+        imeiInput.value = formattedIMEI.trim();
+    }
+
+    function handlePaste(event) {
+        event.preventDefault();
+
+        const paste = (event.clipboardData || window.clipboardData).getData('text');
+        const sanitizedPaste = paste.replace(/\s/g, '');
+        let formattedIMEI = '';
+
+        for (let i = 0; i < sanitizedPaste.length; i++) {
+            if (i === 2 || i === 8 || i === 14) {
+                formattedIMEI += ' ';
+            }
+            formattedIMEI += sanitizedPaste[i];
+        }
+
+        imeiInput.value = formattedIMEI.trim();
+    }
+});
+--
+Regards,
+Darshan
