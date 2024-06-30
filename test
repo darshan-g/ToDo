@@ -4,7 +4,7 @@ const IMEIInput = () => {
   const [imei, setImei] = useState('');
 
   const formatIMEI = (input) => {
-    const cleanInput = input.replace(/\s/g, '');
+    const cleanInput = input.replace(/\D/g, ''); // Remove non-numeric characters
     let formattedIMEI = '';
 
     for (let i = 0; i < cleanInput.length; i++) {
@@ -40,6 +40,7 @@ const IMEIInput = () => {
         onChange={handleInputChange}
         onPaste={handlePaste}
         maxLength="17"
+        pattern="\d*"
       />
     </div>
   );
