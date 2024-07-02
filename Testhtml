@@ -17,9 +17,9 @@
     }
 
     .left-side {
-      display: grid;
-      gap: 24px;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      display: flex;
+      flex-direction: column;
+      width: fit-content; /* Adjust to fit content */
     }
 
     .header {
@@ -27,7 +27,6 @@
       color: white;
       text-align: center;
       padding: 16px;
-      grid-column: 1 / -1; /* Make the header span all columns */
     }
 
     .header p {
@@ -35,14 +34,15 @@
     }
 
     .content {
-      display: contents; /* Ensures that the boxes are direct grid items */
+      display: flex;
+      gap: 24px;
     }
 
     .content .box {
+      width: 230px;
       background-color: lightgray;
       padding: 16px;
       box-sizing: border-box;
-      min-width: 230px;
     }
 
     .right-div {
@@ -54,6 +54,10 @@
 
     @media (max-width: 768px) {
       .container {
+        flex-direction: column;
+      }
+
+      .content {
         flex-direction: column;
       }
 
