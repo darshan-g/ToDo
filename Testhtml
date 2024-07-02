@@ -1,102 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
 
+  .container {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .left-side {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: fit-content; /* Adjust to fit content */
+  }
+
+  .header {
+    background-color: blue;
+    color: white;
+    padding: 16px;
+    width: fit-content; /* Adjust to fit content */
+    max-width: calc(230px * 2 + 24px); /* Adjust max-width based on the number of boxes */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .header p {
+    margin: 0;
+    text-align: left; /* Align text to the left */
+  }
+
+  .content {
+    display: flex;
+    gap: 24px;
+  }
+
+  .content .box {
+    width: 230px;
+    background-color: lightgray;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .right-div {
+    width: 230px;
+    background-color: gray;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
     .container {
-      display: flex;
-      gap: 24px;
-      padding: 24px;
-      box-sizing: border-box;
-    }
-
-    .left-side {
-      display: flex;
       flex-direction: column;
-      gap: 24px;
-      width: fit-content; /* Adjust to fit content */
-    }
-
-    .header {
-      background-color: blue;
-      color: white;
-      padding: 16px;
-      max-width: calc(230px * 2 + 24px); /* Adjust max-width based on the number of boxes */
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .header p {
-      margin: 0;
-      text-align: left; /* Align text to the left */
     }
 
     .content {
-      display: flex;
-      gap: 24px;
+      flex-direction: column;
     }
 
     .content .box {
-      width: 230px;
-      background-color: lightgray;
-      padding: 16px;
-      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .header {
+      width: 100%;
     }
 
     .right-div {
-      width: 230px;
-      background-color: gray;
-      padding: 16px;
-      box-sizing: border-box;
+      width: 100%;
     }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .content {
-        flex-direction: column;
-      }
-
-      .content .box {
-        width: 100%;
-      }
-
-      .header {
-        max-width: 100%;
-      }
-
-      .right-div {
-        width: 100%;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="left-side">
-      <div class="header">
-        <p>Exclusive Offer</p>
-        <p>Buy a qualifying device when you join, and some great offers by joining our extraordinary network</p>
-      </div>
-      <div class="content">
-        <div class="box">Box 1</div>
-        <div class="box">Box 2</div>
-        <!-- Add or remove boxes here as needed -->
-        <!-- <div class="box">Box 3</div> -->
-      </div>
+<div class="container">
+  <div class="left-side">
+    <div class="header">
+      <p>Exclusive Offer</p>
+      <p>Buy a qualifying device when you join, and get some great offers by joining our extraordinary network</p>
     </div>
-    <div class="right-div">Right Div</div>
+    <div class="content">
+      <div class="box">Box 1</div>
+      <div class="box">Box 2</div>
+      <!-- Add or remove boxes here as needed -->
+      <!-- <div class="box">Box 3</div> -->
+    </div>
   </div>
+  <div class="right-div">Right Div</div>
+</div>
 
 </body>
 </html>
