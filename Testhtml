@@ -19,6 +19,7 @@
     .left-side {
       display: flex;
       flex-direction: column;
+      gap: 24px;
     }
 
     .header {
@@ -26,6 +27,8 @@
       color: white;
       text-align: center;
       padding: 16px 0;
+      display: flex;
+      justify-content: center;
     }
 
     .content {
@@ -52,10 +55,6 @@
         flex-direction: column;
       }
 
-      .content {
-        flex-direction: column;
-      }
-
       .content .box {
         width: 100%;
       }
@@ -73,7 +72,9 @@
       <div class="header">Header</div>
       <div class="content">
         <div class="box">Box 1</div>
-        <div class="box">Box 3</div>
+        <div class="box">Box 2</div>
+        <!-- Add or remove boxes here as needed -->
+        <!-- <div class="box">Box 3</div> -->
       </div>
     </div>
     <div class="right-div">Right Div</div>
