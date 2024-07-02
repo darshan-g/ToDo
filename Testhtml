@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .header {
+      width: 100%;
+      background-color: blue;
+      color: white;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      width: calc(100% - 254px); /* Adjusted for the gap and right div */
+    }
+
+    .content .box {
+      width: 230px;
+      background-color: lightgray;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .right-div {
+      width: 230px;
+      background-color: gray;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        width: 100%;
+      }
+
+      .right-div {
+        width: 100%;
+      }
+
+      .content .box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">Header</div>
+    <div class="content">
+      <div class="box">Box 1</div>
+      <div class="box">Box 2</div>
+      <div class="box">Box 3</div>
+    </div>
+    <div class="right-div">Right Div</div>
+  </div>
+
+</body>
+</html>
