@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Carousel with Thumb Scroll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            background-color: #ddd;
+            text-align: center;
+            padding: 100px 0;
+            font-size: 24px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .arrow {
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.6s ease;
+        }
+
+        .dot.active {
+            background-color: #717171;
+        }
+
+        .carousel-numbering {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-item">Card 1</div>
+            <div class="carousel-item">Card 2</div>
+            <div class="carousel-item">Card 3</div>
+        </div>
+        <div class="carousel-controls">
+            <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+        </div>
+        <div class="carousel-numbering" id="carouselNumbering">1/3</div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        let startX, endX;
+        const carousel = document.getElementById('carousel');
+
+        showSlides(slideIndex);
+
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        });
+
+        carousel.addEventListener('touchend', () => {
+            if (startX > endX + 50) {
+                nextSlide();
+            } else if (startX < endX - 50) {
+                prevSlide();
+            }
+            startX = 0;
+            endX = 0;
+        });
+
+        function nextSlide() {
+            slideIndex++;
+            if (slideIndex > document.getElementsByClassName("carousel-item").length) {
+                slideIndex = 1;
+            }
+            showSlides(slideIndex);
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            if (slideIndex < 1) {
+                slideIndex = document.getElementsByClassName("carousel-item").length;
+            }
+            showSlides(slideIndex);
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlides(slideIndex);
+        }
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("carousel-item");
+            const dots = document.getElementsByClassName("dot");
+            const totalSlides = slides.length;
+            
+            if (n > totalSlides) { slideIndex = 1 }
+            if (n < 1) { slideIndex = totalSlides }
+            
+            carousel.style.transform = `translateX(${-(slideIndex - 1) * 100}%)`;
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            dots[slideIndex - 1].className += " active";
+            document.getElementById("carouselNumbering").innerHTML = slideIndex + "/" + totalSlides;
+        }
+    </script>
+</body>
+</html>
