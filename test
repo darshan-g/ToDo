@@ -14,7 +14,7 @@ const IMEIInput = () => {
       formattedIMEI += cleanInput[i];
     }
 
-    return formattedIMEI.trim();
+    return formattedIMEI;
   };
 
   const handleInputChange = (event) => {
@@ -39,8 +39,8 @@ const IMEIInput = () => {
         value={imei}
         onChange={handleInputChange}
         onPaste={handlePaste}
-        maxLength="17"
         pattern="\d*"
+        placeholder="xx xxxxxx xxxxxx x"
       />
     </div>
   );
