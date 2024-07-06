@@ -1,0 +1,13 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+      const referrer = document.referrer;
+      let referrerPath = '';
+
+      if (referrer) {
+        const url = new URL(referrer);
+        referrerPath = url.pathname + url.search + url.hash;
+      } else {
+        referrerPath = 'No referrer';
+      }
+
+      document.getElementById('referrer-path').textContent = `Path after domain: ${referrerPath}`;
+    });
