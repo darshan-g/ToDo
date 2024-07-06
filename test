@@ -5,6 +5,9 @@ const IMEIInput = () => {
 
   const formatIMEI = (input) => {
     const cleanInput = input.replace(/\D/g, ''); // Remove non-numeric characters
+    if (cleanInput.length > 16) { // Limit to 16 digits
+      return imei;
+    }
     let formattedIMEI = '';
 
     for (let i = 0; i < cleanInput.length; i++) {
