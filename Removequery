@@ -14,8 +14,12 @@
     function removeQueryParams(url) {
       // Create a URL object
       const urlObject = new URL(url);
-      // Return the URL without query parameters
-      return urlObject.origin + urlObject.pathname + urlObject.hash;
+      // Construct the URL without query parameters and trailing slash
+      let cleanUrl = urlObject.origin + urlObject.pathname + urlObject.hash;
+      if (cleanUrl.endsWith('/')) {
+        cleanUrl = cleanUrl.slice(0, -1); // Remove trailing slash
+      }
+      return cleanUrl;
     }
 
     // Example usage
