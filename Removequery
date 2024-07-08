@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Query Params</title>
+</head>
+<body>
+  <h1>Remove Query Params from URL</h1>
+  <p id="original-url">Original URL: https://www.visible.com/free-trial/?inctmp=hp:7:deals:free-trial</p>
+  <p id="cleaned-url">Cleaned URL: </p>
+
+  <script>
+    function removeQueryParams(url) {
+      // Create a URL object
+      const urlObject = new URL(url);
+      // Return the URL without query parameters
+      return urlObject.origin + urlObject.pathname + urlObject.hash;
+    }
+
+    // Example usage
+    const originalUrl = 'https://www.visible.com/free-trial/?inctmp=hp:7:deals:free-trial';
+    const cleanedUrl = removeQueryParams(originalUrl);
+
+    // Display the results
+    document.getElementById('cleaned-url').textContent = `Cleaned URL: ${cleanedUrl}`;
+  </script>
+</body>
+</html>
