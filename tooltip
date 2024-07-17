@@ -1,0 +1,99 @@
+import React, { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+
+const TooltipContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+`;
+
+const TooltipText = styled.span`
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+
+  ${TooltipContainer}:hover & {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @media (max-width: 425px) {
+    visibility: ${props => (props.active ? 'visible' : 'hidden')};
+    opacity: ${props => (props.active ? 1 : 0)};
+  }
+`;
+
+const SvgIcon = styled.svg`
+  cursor: pointer;
+`;
+
+const AppContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+`;
+
+const App = () => {
+  const [activeTooltip, setActiveTooltip] = useState(false);
+  const tooltipRef = useRef(null);
+
+  const handleToggleTooltip = (event) => {
+    event.stopPropagation();
+    setActiveTooltip(!activeTooltip);
+  };
+
+  const handleClickOutside = (event) => {
+    if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+      setActiveTooltip(false);
+    }
+  };
+
+  useEffect(() => {
+    if (window.innerWidth <= 425) {
+      document.addEventListener('click', handleClickOutside);
+    } else {
+      document.removeEventListener('click', handleClickOutside);
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth > 425) {
+        setActiveTooltip(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <AppContainer>
+      <TooltipContainer onClick={handleToggleTooltip} ref={tooltipRef}>
+        <SvgIcon width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="12" fill="#2196F3"/>
+          <path d="M11 7H13V9H11V7ZM11 11H13V17H11V11Z" fill="white"/>
+        </SvgIcon>
+        <TooltipText active={activeTooltip}>This is an info tooltip</TooltipText>
+      </TooltipContainer>
+    </AppContainer>
+  );
+};
+
+export default App;
