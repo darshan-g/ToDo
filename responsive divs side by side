@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            gap: 16px;
+        }
+        .box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            position: relative;
+        }
+        .box-content {
+            margin-bottom: 40px; /* Space to accommodate the button */
+        }
+        .button {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="box-content">
+                <p>Content of div 1.</p>
+                <p>Additional content of div 1.</p>
+            </div>
+            <button class="button">Button 1</button>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <p>Content of div 2.</p>
+            </div>
+            <button class="button">Button 2</button>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <p>Content of div 3.</p>
+                <p>Additional content of div 3.</p>
+                <p>More content of div 3.</p>
+            </div>
+            <button class="button">Button 3</button>
+        </div>
+    </div>
+</body>
+</html>
