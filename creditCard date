@@ -1,0 +1,40 @@
+import React, { useState } from "react";
+
+// Helper function to format date in MM/YYYY format
+const formatDate = (value) => {
+  const cleaned = value.replace(/\D+/g, ""); // Remove non-digits
+  let formatted = cleaned;
+
+  if (cleaned.length > 2) {
+    // Insert "/" after the first two characters (MM)
+    formatted = `${cleaned.slice(0, 2)}/${cleaned.slice(2, 6)}`;
+  }
+
+  return formatted;
+};
+
+const ExpirationDateInput = () => {
+  const [date, setDate] = useState("");
+
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+    const formattedValue = formatDate(inputValue);
+    setDate(formattedValue);
+  };
+
+  return (
+    <div>
+      <label htmlFor="expiration-date">Expiration Date (MM/YYYY):</label>
+      <input
+        id="expiration-date"
+        type="text"
+        maxLength="7" // Maximum length for MM/YYYY
+        value={date}
+        onChange={handleChange}
+        placeholder="MM/YYYY"
+      />
+    </div>
+  );
+};
+
+export default ExpirationDateInput;
