@@ -1,0 +1,34 @@
+import React, { useState } from "react";
+
+// Helper function to format credit card number
+const formatCreditCardNumber = (value) => {
+  const cleaned = value.replace(/\D+/g, ""); // Remove non-digits
+  const formatted = cleaned.match(/.{1,4}/g)?.join(" ") || ""; // Add spaces every 4 digits
+  return formatted;
+};
+
+const CreditCardInput = () => {
+  const [cardNumber, setCardNumber] = useState("");
+
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+    const formattedValue = formatCreditCardNumber(inputValue);
+    setCardNumber(formattedValue);
+  };
+
+  return (
+    <div>
+      <label htmlFor="card-number">Credit Card Number:</label>
+      <input
+        id="card-number"
+        type="text"
+        maxLength="19" // Maximum length for credit card number with spaces
+        value={cardNumber}
+        onChange={handleChange}
+        placeholder="1234 5678 9012 3456"
+      />
+    </div>
+  );
+};
+
+export default CreditCardInput;
